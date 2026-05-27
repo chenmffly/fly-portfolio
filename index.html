@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2026设计总结 | 福来fly_</title>
+    <meta
+      name="description"
+      content="为面试官打造的线上作品展厅，沉浸浏览《2026设计总结》。"
+    />
+    <meta
+      property="og:title"
+      content="2026设计总结 | 福来fly_ 线上作品展厅"
+    />
+    <meta
+      property="og:description"
+      content="带动效与趣味交互的线上作品浏览体验。"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="cursor-glow"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#hero">FLY / PORTFOLIO</a>
+      <nav class="topnav">
+        <a href="#story">作品亮点</a>
+        <a href="#gallery">精选浏览</a>
+        <a href="#wall">全部作品</a>
+      </nav>
+      <button class="ghost-button magnetic" id="shuffleButton" type="button">
+        随机看一张
+      </button>
+    </header>
+
+    <main id="app">
+      <section class="hero panel" id="hero">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">INTERACTIVE PORTFOLIO</p>
+          <h1 class="hero-title reveal">
+            2026设计总结
+            <span>我是福来 fly_，这是一份关于 UI、运营设计、AI 辅助创作与金融产品体验的阶段性作品整理。</span>
+          </h1>
+          <p class="hero-text reveal">
+            我把这组作品拆成几个项目章节，希望你可以按项目理解我的思路，也可以逐页查看每个画面的完整细节。
+          </p>
+          <div class="hero-actions reveal">
+            <a class="primary-button magnetic" href="#gallery">进入作品浏览</a>
+            <a
+              class="secondary-button"
+              href="https://www.zcool.com.cn/work/ZNzM2MDE1NjQ=.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+              查看原始站酷页面
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-stage reveal">
+          <div class="hero-card tilt-card" id="heroCard">
+            <img id="heroCover" alt="作品封面预览" />
+            <div class="hero-card-info">
+              <p id="heroMeta">福来fly_ · UI / APP界面</p>
+              <strong id="heroCount">44 张作品画面</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-ribbon" id="story"></section>
+
+      <section class="story panel">
+        <div class="section-heading reveal">
+          <p class="eyebrow">HOW I PRESENT</p>
+          <h2>我希望你看到的不只是画面，也能看到项目之间的脉络。</h2>
+        </div>
+        <div class="story-grid">
+          <article class="story-card reveal">
+            <span>01</span>
+            <h3>运营与 IP</h3>
+            <p>我会先展示爱心航空的 IP 与运营活动设计，这部分更强调主题包装、视觉记忆点和活动传播。</p>
+          </article>
+          <article class="story-card reveal">
+            <span>02</span>
+            <h3>产品与系统</h3>
+            <p>中段是金融 App、Web 平台、小程序和公共文化服务中心项目，我会按页面讲设计结构与体验呈现。</p>
+          </article>
+          <article class="story-card reveal">
+            <span>03</span>
+            <h3>延展与总结</h3>
+            <p>最后会看到 IP、线下活动、插画探索和总结页，这些内容体现我在不同场景下的视觉延展能力。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="gallery panel" id="gallery">
+        <div class="section-heading reveal">
+          <p class="eyebrow">PROJECT TOUR</p>
+          <h2>你可以按项目浏览，也可以直接选择任意一页。</h2>
+        </div>
+        <div class="gallery-controls reveal">
+          <button class="icon-button magnetic" id="prevScene" type="button" aria-label="上一页作品">
+            ‹
+          </button>
+          <button class="tour-button magnetic" id="tourButton" type="button">
+            播放逐页导览
+          </button>
+          <button class="icon-button magnetic" id="nextScene" type="button" aria-label="下一页作品">
+            ›
+          </button>
+        </div>
+        <div class="page-scrubber reveal" id="pageScrubber" aria-label="选择作品页码"></div>
+
+        <div class="gallery-layout">
+          <div class="gallery-stage">
+            <div class="stage-card" id="stageCard">
+              <div class="stage-viewport" id="stageViewport">
+                <div class="stage-stack" id="stageStack"></div>
+              </div>
+              <div class="stage-overlay">
+                <p id="stageIndex">P01</p>
+                <h3 id="stageTitle">项目章节</h3>
+                <p id="stageDesc">在主图区域内滚动，可以查看长图的完整内容。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-rail" id="galleryRail"></div>
+        </div>
+      </section>
+
+      <section class="wall panel" id="wall">
+        <div class="section-heading reveal">
+          <p class="eyebrow">FULL COLLECTION</p>
+          <h2>全部作品画面保留在这里，方便你快速回看和放大。</h2>
+        </div>
+        <div class="wall-toolbar reveal">
+          <p id="wallHint">点击任意卡片进入聚焦浏览。</p>
+          <div class="wall-actions">
+            <div class="filter-tabs" aria-label="作品筛选">
+              <button class="filter-tab is-active" type="button" data-filter="all">全部</button>
+              <button class="filter-tab" type="button" data-filter="still">静帧</button>
+              <button class="filter-tab" type="button" data-filter="motion">动效</button>
+              <button class="filter-tab" type="button" data-filter="long">长图</button>
+            </div>
+            <button class="ghost-button magnetic" id="surpriseButton" type="button">
+              Surprise Me
+            </button>
+          </div>
+        </div>
+        <div class="masonry" id="masonry"></div>
+      </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox-close" id="lightboxClose" type="button">×</button>
+      <button class="lightbox-nav prev" id="lightboxPrev" type="button">‹</button>
+      <figure class="lightbox-figure">
+        <img id="lightboxImage" alt="放大作品" />
+        <figcaption>
+          <p id="lightboxCounter">01 / 44</p>
+          <h3 id="lightboxTitle">作品页</h3>
+        </figcaption>
+      </figure>
+      <button class="lightbox-nav next" id="lightboxNext" type="button">›</button>
+    </div>
+
+    <template id="statTemplate">
+      <article class="stat-card reveal">
+        <p class="stat-label"></p>
+        <strong class="stat-value"></strong>
+      </article>
+    </template>
+
+    <template id="railTemplate">
+      <article class="rail-card reveal">
+        <p class="rail-step"></p>
+        <h3 class="rail-name"></h3>
+        <p class="rail-copy"></p>
+      </article>
+    </template>
+
+    <template id="wallTemplate">
+      <button class="masonry-item reveal" type="button">
+        <img alt="" loading="lazy" />
+        <span class="masonry-meta"></span>
+      </button>
+    </template>
+
+    <script src="./portfolio-data.js" defer></script>
+    <script src="./script.js" defer></script>
+  </body>
+</html>
